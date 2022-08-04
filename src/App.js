@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./Home";
-import Header from "./Header";
 import IndMoviePage from "./IndMoviePage";
+import Trending from "./Trending";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="indmoviepage" element={<IndMoviePage />} />
+          <Route path="/" element={<Trending />} />
+          <Route exact path="indmoviepage/:id" element={<IndMoviePage />} />
         </Routes>
       </Router>
     </div>

@@ -38,13 +38,14 @@ body {
   margin: 20px;
 }
 .searcBarContainer input {
-  height: 34px;
+  height: 20px;
   outline: 0ch;
   padding: 10px;
   font-size: 1.1rem;
   font-weight: 500;
   border-radius: 20px;
   border: none;
+  margin-right: 10px;
 }
 
 .coverContainer img {
@@ -74,9 +75,13 @@ body {
 
 .cardsContainer {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   justify-content: center;
+}
+.cardsContainer .linktag {
+  text-decoration: none;
 }
 
 /* .card:hover {
@@ -148,13 +153,14 @@ body {
   display: flex;
   flex-direction: column;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   color: #f1f1f1;
   height: 100%;
   width: 100%;
 }
 
 .movieInfo {
+  width: 40%;
   position: absolute;
   top: 0;
   display: flex;
@@ -169,7 +175,7 @@ body {
   flex-wrap: wrap;
 }
 .movieInfo h1 {
-  font-family: "Helvetica Neue LT Pro";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -184,9 +190,10 @@ body {
   font-size: 16px;
   line-height: 20px;
   color: #ffffff;
+  letter-spacing: 1px;
 }
 .movieInfo span {
-  font-family: "Helvetica Neue LT Pro";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -194,4 +201,21 @@ body {
   display: flex;
   align-items: center;
   color: #ffffff;
+}
+.movieInfo #relsDate {
+  margin-left: 50px;
+}
+
+.Paginat {
+  display: flex;
+  justify-content: center;
+}
+
+.css-19micn4-MuiButtonBase-root-MuiPaginationItem-root {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.css-19micn4-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #000000 !important;
+  color: red !important;
 }/*# sourceMappingURL=main.css.map */

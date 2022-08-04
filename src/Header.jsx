@@ -2,8 +2,8 @@ import React from "react";
 // import "./Header.css";
 import "./Sass/main.css";
 import logo from "./assets/images/logo.png";
-import FadeLoader from "react-spinners/FadeLoader";
-function Header() {
+import { Circles } from "react-loader-spinner";
+function Header(props) {
   return (
     <div className="headerContainer">
       <div className="content">
@@ -11,8 +11,20 @@ function Header() {
           <img src={logo} />
         </div>
         <div className="searcBarContainer">
-          <input type="search" placeholder="search any movie" />
-          {/* <FadeLoader size={1} /> */}
+          <input
+            type="text"
+            placeholder="search any movie"
+            onChange={props.mainFunc}
+          />
+          <div className="spinner">
+            <Circles
+              height="35"
+              width="35"
+              radius="9"
+              color="orange"
+              ariaLabel="three-dots-loading"
+            />
+          </div>
         </div>
       </div>
     </div>

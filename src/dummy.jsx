@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import play from "./assets/images/play.png";
-import "./Sass/main.css";
 import { Pagination } from "@mui/material";
-import Header from "./Header";
-import Home from "./Home";
+import { Link } from "react-router-dom";
+import Header from ".   /Header";
+import "./Header.css";
+import "./home.css";
 
-function Trending() {
+function Home() {
   const [moviedata, setMovies] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [page, setPage] = useState();
   const [numberOfPages, setNumberOfPages] = useState(10);
-  const [filterData, setFilterData] = useState([]);
 
   const baseUrl = "https://api.themoviedb.org/3";
   const apiKEY = `api_key=67011cf113627fe3311316af752fbcc5&page=${page}`;
@@ -26,18 +25,11 @@ function Trending() {
     setMovies(data.results);
     setNumberOfPages(data.total_pages);
   };
+
   useEffect(() => {
     getMovie();
   }, [page]);
 
-  const handlePageClick = (data) => {
-    alert(data.selected);
-  };
-
-  const handleChange = (page) => {
-    setPage(page);
-    window.scroll(0, 0);
-  };
   const searchText = (event) => {
     setFilterData(event.target.value);
   };
@@ -50,19 +42,28 @@ function Trending() {
         .includes(filterData.toString().toLowerCase())
     );
   });
+
+  // function to get input
+
+  const handleChange = (page) => {
+    setPage(page);
+    window.scroll(0, 0);
+  };
+
   return (
-    <div className="mainCntr">
-      <Header mainFunc={searchText} />
-      <Home />
-      <div className="trnding">
+    <div className="home">
+      <div className="headerSection">
+        <Header mainFunc={searchText} />
+      </div>
+
+      <div className="homeSection">
         <div className="cardsContainer">
           {dataSearched.map((data) => {
             return (
               <>
                 <Link
-                  to={`/indmoviepage/${data.id}`}
                   className="linktag"
-                  // to={`/indmoviepage/${data.id}`}
+                  to={`/indmovie/${data.id}`}
                   key={data.id}
                 >
                   <div key={data.id} className="card">
@@ -72,22 +73,13 @@ function Trending() {
                       alt=""
                     />
                     <div className="cardInfo" key={data.id}>
-                      <div className="leftinfo">
-                        <h2 key={data.id}>{data.original_title}</h2>
-                        <div className="ratingContainer">
-                          <StarRateIcon
-                            key={data.id}
-                            style={{
-                              color: "yellow",
-                              height: "15px",
-                              width: "15px",
-                            }}
-                          />
-                          <p>{data.vote_average} / 5</p>
-                        </div>
-                      </div>
-                      <div className="rightinfo">
-                        <img src={play} />
+                      <h2 key={data.id}>{data.original_title}</h2>
+                      <div className="ratingContainer">
+                        <StarRateIcon
+                          key={data.id}
+                          style={{ color: "yellow" }}
+                        />
+                        <p>{data.vote_average}</p>
                       </div>
                     </div>
                   </div>
@@ -98,8 +90,7 @@ function Trending() {
         </div>
         <div className="Paginat">
           <Pagination
-            // variant="outlined"
-            color="secondary"
+            variant="outlined"
             count={numberOfPages}
             onChange={(e) => handleChange(e.target.textContent)}
           />
@@ -109,4 +100,19 @@ function Trending() {
   );
 }
 
-export default Trending;
+export default Home;
+
+import React, { useState, useRef } from "react";
+import "./Header.css";
+import SearchIcon from "@mui/icons-material/Search";
+
+function Header(props) {
+  return (
+    <div className="header">
+      <div className="header_center">
+        <input type="text" onChange={props.mainFunc} />
+        <SearchIcon />
+      </div>
+    </div>
+  );
+}
