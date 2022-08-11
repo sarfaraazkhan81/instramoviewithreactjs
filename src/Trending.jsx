@@ -50,59 +50,62 @@ function Trending() {
         .includes(filterData.toString().toLowerCase())
     );
   });
+
   return (
     <div className="mainCntr">
       <Header mainFunc={searchText} />
       <Home />
-      <div className="trnding">
-        <div className="cardsContainer">
-          {dataSearched.map((data) => {
-            return (
-              <>
-                <Link
-                  to={`/indmoviepage/${data.id}`}
-                  className="linktag"
-                  // to={`/indmoviepage/${data.id}`}
-                  key={data.id}
-                >
-                  <div key={data.id} className="card">
-                    <img
-                      key={data.id}
-                      src={imageBaseUrl + data.backdrop_path}
-                      alt=""
-                    />
-                    <div className="cardInfo" key={data.id}>
-                      <div className="leftinfo">
-                        <h2 key={data.id}>{data.original_title}</h2>
-                        <div className="ratingContainer">
-                          <StarRateIcon
-                            key={data.id}
-                            style={{
-                              color: "yellow",
-                              height: "15px",
-                              width: "15px",
-                            }}
-                          />
-                          <p>{data.vote_average} / 5</p>
+      <div className="trendingContainer">
+        <div className="trnding">
+          <div className="cardsContainer">
+            {dataSearched.map((data, val) => {
+              return (
+                <>
+                  <Link
+                    to={`/indmoviepage/${data.id}`}
+                    className="linktag"
+                    key={data.id}
+                  >
+                    <div key={data.id} className="card">
+                      <img
+                        key={data.id}
+                        src={imageBaseUrl + data.backdrop_path}
+                        alt=""
+                      />
+                      <div className="cardInfo" key={data.id}>
+                        <div className="leftinfo">
+                          <h2 key={data.id}>{data.original_title}</h2>
+                          <div className="ratingContainer">
+                            <StarRateIcon
+                              key={data.id}
+                              style={{
+                                color: "yellow",
+                                height: "15px",
+                                width: "15px",
+                              }}
+                            />
+                            <p>{data.vote_average} / 5</p>
+                          </div>
+                        </div>
+                        <div className="rightinfo">
+                          <img src={play} />
                         </div>
                       </div>
-                      <div className="rightinfo">
-                        <img src={play} />
-                      </div>
                     </div>
-                  </div>
-                </Link>
-              </>
-            );
-          })}
-        </div>
-        <div className="Paginat">
-          <Pagination
-            // variant="outlined"
-            color="secondary"
-            count={numberOfPages}
-            onChange={(e) => handleChange(e.target.textContent)}
-          />
+                  </Link>
+                </>
+              );
+            })}
+          </div>
+
+          <div className="Paginat">
+            <Pagination
+              // variant="outlined"
+              color="secondary"
+              count={numberOfPages}
+              onChange={(e) => handleChange(e.target.textContent)}
+            />
+          </div>
         </div>
       </div>
     </div>
