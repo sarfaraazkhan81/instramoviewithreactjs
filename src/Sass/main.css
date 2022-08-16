@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 * {
   margin: 0px;
   padding: 0px;
@@ -59,6 +60,8 @@
   justify-content: space-between;
   width: 280px;
   height: 178px;
+  min-height: 178px;
+  max-height: 178px;
   margin-bottom: 150px;
 }
 .cardimg {
@@ -107,7 +110,7 @@
 .cardInfo h2 {
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 16px;
   line-height: 140%;
 }
@@ -220,6 +223,11 @@ body {
 .Paginat {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
+}
+
+.MuiPagination-root {
+  margin-bottom: 20px !important;
 }
 
 .css-19micn4-MuiButtonBase-root-MuiPaginationItem-root {
@@ -229,4 +237,44 @@ body {
 .css-19micn4-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #000000 !important;
   color: red !important;
+}
+
+.playTrailerButton {
+  width: 170px;
+  background-color: #161b24;
+  color: #ffffff;
+  font-size: 1.1rem;
+  padding: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 40px;
+  outline: none;
+  border: 1px solid;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.vidplay {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  margin-left: 15%;
+  width: 70%;
+  height: 600px;
+}
+.vidplay button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #161b24;
+  position: absolute;
+  top: 0;
+  margin-left: 90%;
+  margin-top: 1%;
+  width: 50px;
+  height: 30px;
+  color: #ffffff;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

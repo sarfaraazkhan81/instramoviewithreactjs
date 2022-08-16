@@ -7,16 +7,23 @@ import "./Sass/main.css";
 import { Pagination } from "@mui/material";
 import Header from "./Header";
 import Home from "./Home";
+import YouTube from "react-youtube";
+import axios from "axios";
+import ReactPlayer from "react-player";
 
 function Trending() {
   const [moviedata, setMovies] = useState([]);
   const [page, setPage] = useState();
   const [numberOfPages, setNumberOfPages] = useState(10);
   const [filterData, setFilterData] = useState([]);
+  const [video, setVideo] = useState([]);
 
   const baseUrl = "https://api.themoviedb.org/3";
   const apiKEY = `api_key=67011cf113627fe3311316af752fbcc5&page=${page}`;
-  const Api_URL = baseUrl + "/discover/movie?sort_by=popularity.desc&" + apiKEY;
+  const Api_URL =
+    baseUrl +
+    "/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&" +
+    apiKEY;
   const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
 
   const getMovie = async () => {
@@ -26,6 +33,9 @@ function Trending() {
     setMovies(data.results);
     setNumberOfPages(data.total_pages);
   };
+
+  //function to call while hovering on the element
+
   useEffect(() => {
     getMovie();
   }, [page]);
@@ -72,6 +82,7 @@ function Trending() {
                         src={imageBaseUrl + data.backdrop_path}
                         alt=""
                       />
+
                       <div className="cardInfo" key={data.id}>
                         <div className="leftinfo">
                           <h2 key={data.id}>{data.original_title}</h2>
