@@ -7,16 +7,13 @@ import "./Sass/main.css";
 import { Pagination } from "@mui/material";
 import Header from "./Header";
 import Home from "./Home";
-import YouTube from "react-youtube";
-import axios from "axios";
-import ReactPlayer from "react-player";
 
 function Trending() {
   const [moviedata, setMovies] = useState([]);
   const [page, setPage] = useState();
   const [numberOfPages, setNumberOfPages] = useState(10);
   const [filterData, setFilterData] = useState([]);
-  const [video, setVideo] = useState([]);
+  const [active, setActive] = useState(false);
 
   const baseUrl = "https://api.themoviedb.org/3";
   const apiKEY = `api_key=67011cf113627fe3311316af752fbcc5&page=${page}`;
@@ -61,12 +58,53 @@ function Trending() {
     );
   });
 
+  const lowest = () => {
+    const vote = [...moviedata];
+    vote.sort((a, b) => {
+      return a.vote_average - b.vote_average;
+    });
+    setMovies(vote);
+  };
+
+  const highest = () => {
+    const vote = [...moviedata];
+    vote.sort((a, b) => {
+      return b.vote_average - a.vote_average;
+    });
+    setMovies(vote);
+  };
+
+  const toggleClass = () => {
+    setActive(!active);
+  };
+
   return (
     <div className="mainCntr">
       <Header mainFunc={searchText} />
       <Home />
       <div className="trendingContainer">
         <div className="trnding">
+          <div className="headingContainer">
+            <div className="trendingHeading">
+              <h1>Trending</h1>
+            </div>
+            <div className={active ? "active" : null} onClick={toggleClass}>
+              <button
+                id="filterBtn"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                Sort by rating
+              </button>
+              <div className="rating">
+                <button onClick={highest}>High to Low</button>
+                <button onClick={lowest}>Low to High</button>
+              </div>
+            </div>
+          </div>
           <div className="cardsContainer">
             {dataSearched.map((data, val) => {
               return (
@@ -95,7 +133,7 @@ function Trending() {
                                 width: "15px",
                               }}
                             />
-                            <p>{data.vote_average} / 5</p>
+                            <p>{data.vote_average} / 10</p>
                           </div>
                         </div>
                         <div className="rightinfo">
