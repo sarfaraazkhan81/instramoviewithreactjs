@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@font-face {
+  src: url(../assets/fonts/HelveticaNeueLTProBdCnO.otf);
+  font-family: "Helvetica Neue LT Pro", sans-serif;
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -222,35 +226,35 @@ body {
 }
 
 .movieInfo {
-  width: 500px;
-  position: absolute;
+  color: white;
+  width: 70%;
   top: 0;
   display: flex;
   margin-top: 50px;
   margin-left: 40px;
   flex-direction: column;
-  font-family: "Poppins";
+  font-family: "Helvetica Neue LT Pro", sans-serif;
 }
 .movieInfo h1,
 .movieInfo p {
   margin: 10px;
   display: flex;
-  flex-wrap: wrap;
-  font-family: "Poppins";
+  flex-wrap: break-word;
+  font-family: "Helvetica Neue LT Pro", sans-serif;
   letter-spacing: 1.5px;
   margin-right: 50px;
 }
 .movieInfo h1 {
-  font-family: "Poppins";
+  font-family: "Helvetica Neue LT Pro", sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 42px;
   line-height: 50px;
   display: flex;
   align-items: flex-end;
 }
 .movieInfo p {
-  font-family: "Poppins";
+  font-family: "Helvetica Neue LT Pro", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -272,6 +276,74 @@ body {
   margin-left: 50px;
 }
 
+@media only screen and (max-width: 600px) {
+  .movieInfo {
+    width: 100%;
+  }
+  .movieInfo h1 {
+    font-size: 1.2rem;
+  }
+  .movieInfo p {
+    font-size: 0.8rem;
+  }
+  .movieInfo button {
+    width: 100px;
+    height: 30px;
+    font-size: 0.6rem;
+    padding: 2px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .movieInfo {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  .movieInfo h1 {
+    font-size: 1.2rem;
+  }
+  .movieInfo p {
+    font-size: 0.8rem;
+  }
+  .movieInfo button {
+    width: 100px;
+    height: 30px;
+    font-size: 0.6rem;
+    padding: 2px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .movieInfo {
+    width: 100%;
+    margin: 0px;
+  }
+  .movieInfo h1 {
+    font-size: 1.2rem;
+    margin: 0px;
+  }
+  .movieInfo p {
+    font-size: 0.8rem;
+    margin-bottom: 1px;
+    margin-top: 0.5px;
+  }
+  .movieInfo button {
+    width: 100px;
+    height: 30px;
+    font-size: 0.6rem;
+    padding: 2px;
+    margin-left: 10px;
+    height: 33px;
+    margin-top: 2px;
+  }
+  .movieInfo #date {
+    margin-top: 0px;
+  }
+  .movieInfo a {
+    margin: 0px;
+  }
+}
 .Paginat {
   display: flex;
   justify-content: center;
