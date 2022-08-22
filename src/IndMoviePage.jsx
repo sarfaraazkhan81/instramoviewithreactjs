@@ -3,8 +3,6 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "./Sass/main.css";
 import Header from "./Header";
 import { Link, useParams } from "react-router-dom";
-import YouTube from "react-youtube";
-import movieTrailer from "movie-trailer";
 import ReactPlayer from "react-player";
 import axios from "axios";
 
@@ -44,6 +42,7 @@ function IndMovie() {
       `https://api.themoviedb.org/3/movie/${id}/videos?${apiKEY}&language=en-US`
     );
     const data = vid.data.results;
+    console.log(data, "overall data");
     data.map((val) => {
       return setVideoId(val.key);
     });
@@ -53,8 +52,6 @@ function IndMovie() {
     getMovie(movie);
     movieVideo();
   }, []);
-
-  console.log(videoId, "video key");
 
   const videoContainer = () => {
     setTrailerContainer(true);

@@ -5,8 +5,11 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import play from "./assets/images/play.png";
 import "./Sass/main.css";
 import { Pagination } from "@mui/material";
+import { DynamicStar } from "react-dynamic-star";
 import Header from "./Header";
 import Home from "./Home";
+import axios from "axios";
+import ReactPlayer from "react-player";
 
 function Trending() {
   const [moviedata, setMovies] = useState([]);
@@ -14,6 +17,10 @@ function Trending() {
   const [numberOfPages, setNumberOfPages] = useState(10);
   const [filterData, setFilterData] = useState([]);
   const [active, setActive] = useState(false);
+  const [movieRatingNo, setMovieRatingNo] = useState([]);
+  const [TrailerId, setTrailerId] = useState([]);
+  const [trailerKey, setTrailerKey] = useState();
+  const [hover, setHover] = useState(false);
 
   const baseUrl = "https://api.themoviedb.org/3";
   const apiKEY = `api_key=67011cf113627fe3311316af752fbcc5&page=${page}`;
@@ -31,15 +38,10 @@ function Trending() {
     setNumberOfPages(data.total_pages);
   };
 
-  //function to call while hovering on the element
-
   useEffect(() => {
     getMovie();
+    ratingNo();
   }, [page]);
-
-  const handlePageClick = (data) => {
-    alert(data.selected);
-  };
 
   const handleChange = (page) => {
     setPage(page);
@@ -78,6 +80,44 @@ function Trending() {
     setActive(!active);
   };
 
+  const ratingNo = async () => {
+    const response = await axios.get(Api_URL);
+    const result = response.data.results;
+
+    result.map((data) => {
+      return setMovieRatingNo(data.vote_average);
+    });
+  };
+
+  const movieTrailerVideo = async (TrailerId) => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${TrailerId}/videos?api_key=67011cf113627fe3311316af752fbcc5&language=en-US`
+    );
+
+    const data = response.data.results;
+    data.map((data) => {
+      return setTrailerKey(data.key);
+    });
+  };
+
+  movieTrailerVideo(TrailerId);
+
+  let renderingTheDiv;
+
+  if (hover && trailerKey) {
+    renderingTheDiv = (
+      <div className="videoContainer">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${trailerKey}?controls=0&autoplay=1&mute=1`}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+    );
+  }
+  console.log(TrailerId, "keyss");
   return (
     <div className="mainCntr">
       <Header mainFunc={searchText} />
@@ -105,35 +145,48 @@ function Trending() {
               </div>
             </div>
           </div>
-          <div className="cardsContainer">
+          <div
+            className="cardsContainer"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
             {dataSearched.map((data, val) => {
+              console.log(data.id, "ok");
               return (
-                <>
+                <div key={data.id}>
                   <Link
                     to={`/indmoviepage/${data.id}`}
                     className="linktag"
                     key={data.id}
                   >
-                    <div key={data.id} className="card">
+                    <div
+                      key={data.id}
+                      className="card"
+                      onMouseOver={() => {
+                        setTrailerId(data.id);
+                      }}
+                    >
                       <img
                         key={data.id}
                         src={imageBaseUrl + data.backdrop_path}
                         alt=""
                       />
+                      {renderingTheDiv}
 
                       <div className="cardInfo" key={data.id}>
                         <div className="leftinfo">
                           <h2 key={data.id}>{data.original_title}</h2>
                           <div className="ratingContainer">
-                            <StarRateIcon
+                            <DynamicStar
                               key={data.id}
-                              style={{
-                                color: "yellow",
-                                height: "15px",
-                                width: "15px",
-                              }}
+                              rating={data.vote_average / 2}
+                              width={15}
+                              height={15}
+                              totalStars={5}
+                              emptyStarColor={"#ffff"}
+                              fullStarColor={"#FFBC00"}
                             />
-                            <p>{data.vote_average} / 10</p>
+                            <p>{data.vote_average / 2} / 5</p>
                           </div>
                         </div>
                         <div className="rightinfo">
@@ -142,7 +195,7 @@ function Trending() {
                       </div>
                     </div>
                   </Link>
-                </>
+                </div>
               );
             })}
           </div>

@@ -116,3 +116,21 @@ function Header(props) {
     </div>
   );
 }
+
+// const movieTrailerVideo = async () => {
+//   //https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
+// };
+
+// if (hover && video) {
+//   content = (
+//     <div className="videoContainer">
+//       <iframe
+//         src={`https://www.youtube-nocookie.com/embed/${video.key}?controls=0&autoplay=1&mute=1`}
+//         title="YouTube video player"
+//         frameBorder="0"
+//         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//         allowFullScreen
+//       ></iframe>
+//     </div>
+//   );
+// }
