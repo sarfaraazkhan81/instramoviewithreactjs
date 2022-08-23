@@ -21,6 +21,7 @@ function Trending() {
   const [TrailerId, setTrailerId] = useState([]);
   const [trailerKey, setTrailerKey] = useState();
   const [hover, setHover] = useState(false);
+  const [queary, setQueary] = useState("");
 
   const baseUrl = "https://api.themoviedb.org/3";
   const apiKEY = `api_key=67011cf113627fe3311316af752fbcc5&page=${page}`;
@@ -117,10 +118,35 @@ function Trending() {
       </div>
     );
   }
-  console.log(TrailerId, "keyss");
+
+  // for searching the query
+  const getsSearchData = async () => {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=67011cf113627fe3311316af752fbcc5&language=en-US&query=${queary}&page=${1}&include_adult=false`
+    );
+    const result = response.data.results;
+    console.log(result);
+    setMovies(result);
+  };
+  const queryTextHandler = (event) => {
+    const inputData = event.target.value;
+    console.log(inputData);
+    setQueary(inputData);
+  };
+
+  useEffect(() => {
+    if (queary.length > 3) {
+      getsSearchData();
+    }
+  }, [queary]);
+
   return (
     <div className="mainCntr">
-      <Header mainFunc={searchText} />
+      <Header
+        mainFunc={searchText}
+        queryTextHandler={queryTextHandler}
+        // getsSearchData={getsSearchData}
+      />
       <Home />
       <div className="trendingContainer">
         <div className="trnding">
@@ -151,7 +177,6 @@ function Trending() {
             onMouseLeave={() => setHover(false)}
           >
             {dataSearched.map((data, val) => {
-              console.log(data.id, "ok");
               return (
                 <div key={data.id}>
                   <Link
@@ -186,7 +211,7 @@ function Trending() {
                               emptyStarColor={"#ffff"}
                               fullStarColor={"#FFBC00"}
                             />
-                            <p>{data.vote_average / 2} / 5</p>
+                            {/* <p>{data.vote_average / 2} / 5</p> */}
                           </div>
                         </div>
                         <div className="rightinfo">

@@ -1,0 +1,59 @@
+/* * {
+  color: black;
+} */
+html {
+  height: 100%;
+}
+.container {
+  background-image: url("https://nkpremices.com/content/images/size/w1100/2021/08/mih10uhu1464fx1kr0by-1.jpg");
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  width: 100%;
+  /* margin-top: 25%; */
+  height: 100vh;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login h1 {
+  color: cyan;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inputContainer > input {
+  width: 300px;
+  height: 40px;
+  border: none;
+  outline: none;
+  margin: 20px;
+  border-radius: 20px;
+  padding: 2px;
+  padding-left: 20px;
+  font-size: 1.1rem;
+}
+.button {
+  width: 320px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: rgb(52, 197, 241);
+  color: aliceblue;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 50px;
+}
+button:hover {
+  background-color: blue;
+}

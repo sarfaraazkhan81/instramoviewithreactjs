@@ -14,8 +14,10 @@ function Header(props) {
           <input
             type="text"
             placeholder="search any movie"
-            onChange={props.mainFunc}
+            onChange={props.queryTextHandler}
           />
+          {/* <button onClick={props.getsSearchData()}>Search</button> */}
+          {/* <button onClick={props.searchMovie}>search</button> */}
           <div className="spinner">
             <Circles
               height="35"
