@@ -4,7 +4,7 @@ import Home from "./Home";
 import IndMoviePage from "./IndMoviePage";
 import Trending from "./Trending";
 import Login from "./Login/Login";
-import Search from "./Search";
+import ProtectedRoute from "./ProtectedRoutes";
 
 function App() {
   return (
@@ -13,7 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Trending />} />
           <Route path="login" element={<Login />} />
-          <Route path="search" element={<Search />} />
 
           <Route exact path="indmoviepage/:id" element={<IndMoviePage />} />
         </Routes>

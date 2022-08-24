@@ -1,68 +1,53 @@
 import React from "react";
 import { useState } from "react";
 import "./Login.css";
+import { useForm } from "react-hook-form";
 
 function Login() {
-  const initialValues = { username: "", mobile: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFromErrors] = useState({});
+  const [formdata, setFormData] = useState();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    setFormData(data);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // setFromErrors(validate(formValues));
-  };
-
-  //   const validate = () => {
-  //     const errors = {};
-  //     const regex = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
-  //     if (!value.username) {
-  //       errors.username = "username is required";
-  //     }
-  //     if (!value.mobile) {
-  //       errors.username = "username is required";
-  //     }
-  //     if (!value.password) {
-  //       errors.username = "username is required";
-  //     }
-  //   };
 
   return (
     <div className="container">
-      <form className="login" onSubmit={handleSubmit}>
-        <h1 style={{ color: "white" }}>{JSON.stringify(formValues)}</h1>
+      <form className="login" onSubmit={handleSubmit(onSubmit)}>
         <div className="heading">
           <h1>Pls Login here</h1>
         </div>
         <div className="inputContainer">
+          <input {...register("username", { required: true })} />
+          {errors.username && (
+            <p style={{ color: "red" }}>Username is required</p>
+          )}
           <input
-            type="text"
-            name="username"
-            placeholder="user name"
-            value={formValues.username}
-            onChange={handleChange}
+            {...register(
+              "email",
+              {
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Please enter a valid email",
+                },
+              },
+
+              { required: true }
+            )}
           />
-          <input
-            type="text"
-            name="mobile"
-            placeholder="enter mobile number"
-            value={formValues.mobile}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={formValues.password}
-            onChange={handleChange}
-          />
+
+          {errors.email && <p style={{ color: "red" }}>email is required</p>}
         </div>
         <div className="buttonContainer">
-          <button type="submit">Login</button>
+          <button className="loginButton" type="submit">
+            Login
+          </button>
         </div>
       </form>
     </div>

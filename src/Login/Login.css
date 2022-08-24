@@ -20,9 +20,26 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 0.43);
+  height: 400px;
+  width: 400px;
+  margin-top: 100px;
+}
+.login:hover {
+  border: 1px solid rgba(8, 194, 178, 0.43);
+}
+.heading {
+  margin-top: 0px;
 }
 .login h1 {
   color: cyan;
+  margin-top: 0px;
 }
 
 .inputContainer {
@@ -42,18 +59,34 @@ html {
   padding-left: 20px;
   font-size: 1.1rem;
 }
-.button {
-  width: 320px;
-  height: 50px;
+
+.loginButton {
+  width: 200px;
+  height: 36px;
+  margin-top: 30px;
   border: none;
   outline: none;
-  background-color: rgb(52, 197, 241);
-  color: aliceblue;
-  font-size: 1.2rem;
-  font-weight: 600;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: black;
   cursor: pointer;
-  border-radius: 50px;
+  background: rgba(116, 116, 254, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(116, 116, 254, 0.43);
 }
-button:hover {
-  background-color: blue;
+
+.loginButton:hover {
+  color: aqua;
+  background: rgba(90, 255, 61, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(90, 255, 61, 0.43);
+  width: 220px;
+  height: 38px;
 }

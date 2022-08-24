@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
-import StarRateIcon from "@mui/icons-material/StarRate";
 import play from "./assets/images/play.png";
 import "./Sass/main.css";
 import { Pagination } from "@mui/material";
@@ -9,7 +7,6 @@ import { DynamicStar } from "react-dynamic-star";
 import Header from "./Header";
 import Home from "./Home";
 import axios from "axios";
-import ReactPlayer from "react-player";
 
 function Trending() {
   const [moviedata, setMovies] = useState([]);
