@@ -184,6 +184,7 @@ function Trending() {
                     <div
                       key={data.id}
                       className="card"
+                      style={{ border: "2px solid red" }}
                       onMouseOver={() => {
                         setTrailerId(data.id);
                       }}

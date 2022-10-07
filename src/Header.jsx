@@ -8,16 +8,15 @@ function Header(props) {
     <div className="headerContainer">
       <div className="content">
         <div className="logoContainer">
-          <img src={logo} />
+          <img src="" />
         </div>
         <div className="searcBarContainer">
           <input
             type="text"
             placeholder="search any movie"
-            onChange={props.queryTextHandler}
+          
           />
-          {/* <button onClick={props.getsSearchData()}>Search</button> */}
-          {/* <button onClick={props.searchMovie}>search</button> */}
+      
           <div className="spinner">
             <Circles
               height="35"

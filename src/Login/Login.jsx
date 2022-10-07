@@ -11,7 +11,7 @@ function Login() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data, "this is data");
 
     setFormData(data);
   };

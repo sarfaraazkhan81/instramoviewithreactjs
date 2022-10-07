@@ -44,7 +44,7 @@ function IndMovie() {
     const data = vid.data.results;
     console.log(data, "overall data");
     data.map((val) => {
-      return setVideoId(val.key);
+      return setVideoId(val.k);
     });
   }
 
